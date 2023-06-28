@@ -1,23 +1,14 @@
-import asyncio
-from aiogram import Bot, Dispatcher
-from tgbot.handlers import admin, echo, user
+import requests
+from requests.structures import CaseInsensitiveDict
+
+url = "https://webhook.site/dc1beebb-ae1c-4934-aa6f-b1a4a7c8cb0e"
+
+headers = CaseInsensitiveDict()
+headers["Content-Type"] = "application/json"
+
+data = '{"phonerb": "+79536305255"}'
 
 
-# Запуск бота
-async def main():
-    bot = Bot(token="5921117513:AAGbrJQA5qVqysf3OxR-1j8nF-QE9LzJWq0")
-    dp = Dispatcher()
+resp = requests.post(url, headers=headers, data=data)
 
-    dp.include_routers(admin.router, echo.router, user.router)
-
-    # Альтернативный вариант регистрации роутеров по одному на строку
-    # dp.include_router(questions.router)
-    # dp.include_router(different_types.router)
-
-    # Запускаем бота и пропускаем все накопленные входящие
-    # Да, этот метод можно вызвать даже если у вас поллинг
-    await dp.start_polling(bot)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+print(url, data, resp.content, sep="\n")
