@@ -25,7 +25,8 @@ services:
     container_name: rb_api
     env_file:
       - api/.env
-    # Если не работает эта команда, используйте закомментированную
-    command: sh -c "gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000"
+    volumes:
+      - "./certs:/usr/src/certs"
+    command: sh -c "gunicorn main:app --certfile /usr/src/certs/fullchain.pem --keyfile /usr/src/certs/privkey.pem --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000"
     ports:
       - "8000:8000"

